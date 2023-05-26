@@ -1,5 +1,17 @@
-const world = 'world';
+const token = "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZGVudGlmaWVyIjoiWlVMVSIsInZlcnNpb24iOiJ2MiIsInJlc2V0X2RhdGUiOiIyMDIzLTA1LTIwIiwiaWF0IjoxNjg1MTA3ODY3LCJzdWIiOiJhZ2VudC10b2tlbiJ9.gLkbHI54zIx2aaOrLvbROS1RN9ndD2wvZfvgIrHYkZAijlMoCchdPUAp64iOVMhUriAfNkR_-RNEnn48oa99d0-4mBlAaAxbKzz9I2fs5lhifa6xLn9-1KUWwLVV0TZcrNCS4TXXLSE8NyLtGwvoww_Tm1oqeHhCfiKtw7H8TSPnhvXKT30gcKV7LZEMFn-P6Fp_QcdnI6KrL29dmquN2hs-RUJcksumk8vSmgnO11DemuNfhmeBN_d5z4FBIGjOWKStCDp2WTdzaRx0KAqKHfR59oyqg3svAISuvck4nkjNeIr5aE53Vz2x0tPklle9vBmv_V4C11cZSj_6Y1SRlQ";
+const options = {
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      },
+}
 
-export function hello(who: string = world): string {
-    return 'Hello ' + who;
+agentDetails(options);
+
+function agentDetails(options: RequestInit): void {    
+console.log('hello');
+    fetch('https://api.spacetraders.io/v2/my/agent', options)
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.log(error));
 }

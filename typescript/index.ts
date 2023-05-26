@@ -8,8 +8,10 @@ const requestOptions: RequestInit = {
 let sectorSymbol: string = "";
 let systemSymbol: string = "";
 let waypointSymbol: string = "";
+let contract: contract;
 
-getAgentDetails (requestOptions);
+getAgentDetails(requestOptions);
+viewContracts(requestOptions);
 
 async function getAgentDetails (requestOptions: RequestInit): Promise<void> {    
     await fetch('https://api.spacetraders.io/v2/my/agent', requestOptions)
@@ -28,4 +30,11 @@ function startingLocation(requestOptions: RequestInit, systemSymbol: string, way
     .then(response => response.json())
     .then(data => console.log(data))
     .catch(error => console.log(error));
+}
+
+function viewContracts(requestOptions: RequestInit): void {
+    fetch('https://api.spacetraders.io/v2/my/contracts', requestOptions)
+    .then(response => response.json())
+    .then(data => contract = data.data[0])
+    
 }

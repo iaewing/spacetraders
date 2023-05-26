@@ -18,7 +18,9 @@ const requestOptions = {
 let sectorSymbol = "";
 let systemSymbol = "";
 let waypointSymbol = "";
+let contract;
 getAgentDetails(requestOptions);
+viewContracts(requestOptions);
 function getAgentDetails(requestOptions) {
     return __awaiter(this, void 0, void 0, function* () {
         yield fetch('https://api.spacetraders.io/v2/my/agent', requestOptions)
@@ -37,4 +39,9 @@ function startingLocation(requestOptions, systemSymbol, waypointSymbol) {
         .then(response => response.json())
         .then(data => console.log(data))
         .catch(error => console.log(error));
+}
+function viewContracts(requestOptions) {
+    fetch('https://api.spacetraders.io/v2/my/contracts', requestOptions)
+        .then(response => response.json())
+        .then(data => contract = data.data[0]);
 }
